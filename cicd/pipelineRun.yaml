@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: sample-pipeline-run
+  namespace: jiadchen-dev
+spec:
+  serviceAccountName: pipeline # https://access.redhat.com/solutions/6962429
+  pipelineRef:
+    name: sample-pipeline
+  params:
+    - name: url
+      value: 'https://github.com/coolboy0961/openshift-pipeline-springboot.git'
+  workspaces:
+    - name: shared-workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
