@@ -3,12 +3,15 @@ kind: PipelineRun
 metadata:
   name: sample-pipeline-run
 spec:
-  serviceAccountName: pipeline # https://access.redhat.com/solutions/6962429
+  serviceAccountName: pipeline
   pipelineRef:
-    name: sample-pipeline
+    name: s2i-build-and-deploy
   params:
-    - name: url
-      value: "https://github.com/coolboy0961/openshift-pipeline-springboot.git"
+    - name: IMAGE_NAME
+      value: >-
+        image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/sample-api
+    - name: GIT_REPO
+      value: 'https://github.com/coolboy0961/openshift-pipeline-springboot.git'
   workspaces:
     - name: workspace
       volumeClaimTemplate:

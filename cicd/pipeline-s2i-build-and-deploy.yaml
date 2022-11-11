@@ -8,8 +8,6 @@ spec:
       type: string
     - name: GIT_REPO
       type: string
-    - name: GIT_REVISION
-      type: string
   workspaces:
     - name: workspace
   tasks:
@@ -24,7 +22,7 @@ spec:
         - name: url
           value: $(params.GIT_REPO)
         - name: revision
-          value: $(params.GIT_REVISION)
+          value: ""
         - name: subdirectory
           value: ""
         - name: deleteExisting
@@ -40,6 +38,8 @@ spec:
         - name: source
           workspace: workspace
       params:
+        - name: PATH_CONTEXT
+          value: "./applications/api"
         - name: IMAGE
           value: $(params.IMAGE_NAME)
         - name: TLSVERIFY
@@ -54,4 +54,9 @@ spec:
       params:
       - name: SCRIPT
         value: |
-          oc new-app --docker-image $(params.IMAGE_NAME)
+          oc get "deployment/sample-api" > /dev/null 2>&1
+          if [ "$?" == "0" ]; then
+            echo deployment/sample-api already exists.
+          else
+            oc new-app --docker-image $(params.IMAGE_NAME)
+          fi
