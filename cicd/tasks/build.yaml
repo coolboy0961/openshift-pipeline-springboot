@@ -2,7 +2,6 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: build
-  namespace: jiadchen-dev
 spec:
   steps:
     - image: registry.redhat.io/ubi7/ubi-minimal
@@ -10,4 +9,8 @@ spec:
       script: |
         #!/bin/bash
         pwd
+        cd workspace/source
+        pwd
         ls -la
+  workspaces: # https://github.com/tektoncd/pipeline/issues/5732
+    - name: source

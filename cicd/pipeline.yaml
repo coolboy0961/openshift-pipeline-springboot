@@ -2,16 +2,16 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: sample-pipeline
-  namespace: jiadchen-dev
 spec:
   workspaces: # Task間のデータの受け渡しはworkspaceにて実施
-    - name: shared-workspace
+    - name: workspace
   params: # 各Taskで利用されるパラメータを定義
     - name: url
       type: string
   tasks:
     - name: git-clone
       taskRef: # Pipelineで実行するTaskの参照先
+        kind: ClusterTask
         name: git-clone
       params:
         - name: url
@@ -22,12 +22,12 @@ spec:
           value: "true"
       workspaces:
         - name: output
-          workspace: shared-workspace
+          workspace: workspace
     - name: build
       taskRef:
         name: build
       runAfter: # あるTaskが実行された後に本Taskが実行されるよう順番を制御
         - git-clone
       workspaces:
-        - name: source-dir
-          workspace: shared-workspace
+        - name: source
+          workspace: workspace
