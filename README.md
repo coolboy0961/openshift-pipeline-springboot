@@ -16,12 +16,17 @@ Failed to create PVC for PipelineRun jiadchen-dev/sample-pipeline-run-4 Workspac
 
 pipelineRunを削除して再度Createしたらうまくいった
 
-## 未解決
 ## runAsNonRootのimageをrootでrunしようとしている
 Error: container has runAsNonRoot and image will run as root (pod: "sample-pipeline-run-4-git-clone-pod_jiadchen-dev(3f0e1591-9fba-48e0-8566-7cf7acce6874)", container: prepare)
 
-```
-bash-4.4 ~ $ oc exec -it sample-pipeline-run-4-git-clone-pod -- sh -c "id"
-Defaulted container "step-clone" out of: step-clone, prepare (init), place-scripts (init)
-Error from server (Forbidden): pods "sample-pipeline-run-4-git-clone-pod" is forbidden: exec operation is not allowed because the pod's security context exceeds your permissions: pods "sample-pipeline-run-4-git-clone-pod" is forbidden: unable to validate against any security context constraint: [provider "anyuid": Forbidden: not usable by user or serviceaccount, provider "pipelines-scc": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser: Invalid value: 65532: must be in the ranges: [1013410000, 1013419999], provider "nonroot-v2": Forbidden: not usable by user or serviceaccount, provider "nonroot": Forbidden: not usable by user or serviceaccount, provider "pcap-dedicated-admins": Forbidden: not usable by user or serviceaccount, provider "hostmount-anyuid": Forbidden: not usable by user or serviceaccount, provider "log-collector-scc": Forbidden: not usable by user or serviceaccount, provider "machine-api-termination-handler": Forbidden: not usable by user or serviceaccount, provider "hostnetwork-v2": Forbidden: not usable by user or serviceaccount, provider "hostnetwork": Forbidden: not usable by user or serviceaccount, provider "hostaccess": Forbidden: not usable by user or serviceaccount, provider "splunkforwarder": Forbidden: not usable by user or serviceaccount, provider "node-exporter": Forbidden: not usable by user or serviceaccount, provider "privileged": Forbidden: not usable by user or serviceaccount]
-```
+Developer Sandbox for Red Hat OpenShift では Openshift pipelineが使えないことがわかった。
+なぜかOpenshift Pipeline Operator がインストールされているが、一緒についてくるClusterTaskがない。
+ClusterTaskのgit-cloneタスクを使わなければこのエラーを解決できません。（Developer Sandbox for Red Hat OpenShiftのadmin権限を取得できない）
+
+それで社内のadmin権限がもらえるデモ環境でOpenshift Pipeline をインストールして、ClusterTaskのgit-cloneタスクを使うと、このエラーがなくなった
+
+## workspace binding 'source' does not match any declared workspace
+buildタスクが実行されると、このエラーが出て、workspaceのsourceが見つからないようです。
+こちらの[記事](https://github.com/tektoncd/pipeline/issues/5732)によると、taskのspecにsourceという名前のworkspaceを宣言する必要があることがわかった。
+
+## 未解決
