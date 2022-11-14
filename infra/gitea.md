@@ -7,12 +7,11 @@ openshift の Web Terminalを使って下記コマンドを打ちます。
 
 Gitea Operatorをインストールします。
 
+# Gitea instanceを作成
 Gitea用 Projectを作成
 ```
 oc new-project gitea
 ```
-
-Gitea instanceを作成
 ![](asset/gitea.md_2022-11-14-12-00-47.png)
 ```yaml
 apiVersion: gpte.opentlc.com/v1
