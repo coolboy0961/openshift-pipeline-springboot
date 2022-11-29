@@ -29,8 +29,7 @@ pipelineRun.yaml
 前と同じようにyamlをコピーして作成
 
 # Trigger関連
-## [こちら](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.5/html/pipelines/adding-triggers_creating-applications-with-cicd-pipelines)を参考にして、
-TriggerBinding、TriggerTemplate、EventListenerを作成する。
+## [こちら](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.5/html/pipelines/adding-triggers_creating-applications-with-cicd-pipelines)を参考にして、TriggerBinding、TriggerTemplate、EventListenerを作成する。
 
 修正後のファイル：
 - cicd/trigger/trigger-binding.yaml
