@@ -19,7 +19,7 @@ pipeline-s2i-build-and-deploy.yaml
 - s2i-javaで`./applications/api`配下のjava appをdocker imageにしてdockerリポジトリにアップロードする
 - deployでアップロードされたdocker imageをpodにdeployする
 
-# PipelineRunを作成する
+# PipelineRunを作成する(triggerができたらこれは不要になる)
 
 pipelineRun.yaml
 
@@ -28,8 +28,23 @@ pipelineRun.yaml
 
 前と同じようにyamlをコピーして作成
 
+# Trigger関連
+## [こちら](https://access.redhat.com/documentation/ja-jp/openshift_container_platform/4.5/html/pipelines/adding-triggers_creating-applications-with-cicd-pipelines)を参考にして、
+TriggerBinding、TriggerTemplate、EventListenerを作成する。
+
+修正後のファイル：
+- cicd/trigger/trigger-binding.yaml
+- cicd/trigger/trigger-template.yaml
+- cicd/trigger/event-listener.yaml
+
+## Webhook
+Giteaの場合：
+![](asset/pipeline.md_2022-11-29-16-55-15.png)
+Target URLはevent-listenerをserviceとしてexposeしたURLです。
+
 # Pipelineが走る
-![](asset/pipeline.md_2022-11-29-13-54-00.png)
+git pushすると、pipelineが走ります。
+![](asset/pipeline.md_2022-11-29-16-57-02.png)
 
 # trubleshooting
 ## 
