@@ -1,10 +1,14 @@
 # openshift-pipeline-springboot
+
 - Step1: Git Push すると、Pipelineが実行され、springbootのアプリケーションがデプロイされて、インターネット経由でHello Worldを表示すること
 - Step2: PostgreSQLとやりとりして、取得したデータを返すこと
 
 # Step1の構築手順
 ## Giteaの作成
 [手順](infra/gitea.md)
+
+## Pipelineの作成
+[手順](cicd/pipeline.md)
 # truableshooting
 
 ## OpenShift Sandboxを利用する場合
