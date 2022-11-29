@@ -13,7 +13,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@GetMapping(path = "/home")
+	@GetMapping(path = "/")
 	String home() {
 		return "Hello World!";
 	}
