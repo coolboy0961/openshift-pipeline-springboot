@@ -5,9 +5,9 @@ metadata:
   namespace: sample-application
 spec:
   params:
-  - name: git-repo-url
-    value: $(body.repository.url)
-  - name: git-repo-name
-    value: $(body.repository.name)
-  - name: git-revision
-    value: $(body.head_commit.id)
+    - name: GIT_REPO_URL
+      value: $(body.repository.clone_url)
+    - name: GIT_REPO_NAME
+      value: $(body.repository.name)
+    - name: GIT_REVISION
+      value: $(body.head_commit.id)

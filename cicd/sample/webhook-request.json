@@ -1,0 +1,199 @@
+{
+  "ref": "refs/heads/main",
+  "before": "716e14f2b2dbc1eb58d6d02f1c4ba83754b84dd0",
+  "after": "127de24049ff173ed0cd358525221a95bd42616d",
+  "compare_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot/compare/716e14f2b2dbc1eb58d6d02f1c4ba83754b84dd0...127de24049ff173ed0cd358525221a95bd42616d",
+  "commits": [
+    {
+      "id": "127de24049ff173ed0cd358525221a95bd42616d",
+      "message": "git push のトリガーを検知できるようにする\n",
+      "url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot/commit/127de24049ff173ed0cd358525221a95bd42616d",
+      "author": {
+        "name": "Jiadong Chen",
+        "email": "jiadchen@redhat.com",
+        "username": "jiadchen"
+      },
+      "committer": {
+        "name": "Jiadong Chen",
+        "email": "jiadchen@redhat.com",
+        "username": "jiadchen"
+      },
+      "verification": null,
+      "timestamp": "2022-11-29T16:06:24+09:00",
+      "added": [
+        "cicd/asset/pipeline.md_2022-11-29-13-41-55.png",
+        "cicd/asset/pipeline.md_2022-11-29-13-44-40.png",
+        "cicd/asset/pipeline.md_2022-11-29-13-45-12.png",
+        "cicd/asset/pipeline.md_2022-11-29-13-54-00.png",
+        "cicd/event-listener.yaml",
+        "cicd/pipelineRun-gitea.yaml",
+        "cicd/trigger-binding.yaml",
+        "cicd/trigger-template.yaml"
+      ],
+      "removed": [
+        "cicd/tasks/build.yaml"
+      ],
+      "modified": [
+        "cicd/pipeline-s2i-build-and-deploy.yaml",
+        "cicd/pipeline.md",
+        "cicd/pipelineRun.yaml"
+      ]
+    }
+  ],
+  "head_commit": {
+    "id": "127de24049ff173ed0cd358525221a95bd42616d",
+    "message": "git push のトリガーを検知できるようにする\n",
+    "url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot/commit/127de24049ff173ed0cd358525221a95bd42616d",
+    "author": {
+      "name": "Jiadong Chen",
+      "email": "jiadchen@redhat.com",
+      "username": "jiadchen"
+    },
+    "committer": {
+      "name": "Jiadong Chen",
+      "email": "jiadchen@redhat.com",
+      "username": "jiadchen"
+    },
+    "verification": null,
+    "timestamp": "2022-11-29T16:06:24+09:00",
+    "added": [
+      "cicd/asset/pipeline.md_2022-11-29-13-41-55.png",
+      "cicd/asset/pipeline.md_2022-11-29-13-44-40.png",
+      "cicd/asset/pipeline.md_2022-11-29-13-45-12.png",
+      "cicd/asset/pipeline.md_2022-11-29-13-54-00.png",
+      "cicd/event-listener.yaml",
+      "cicd/pipelineRun-gitea.yaml",
+      "cicd/trigger-binding.yaml",
+      "cicd/trigger-template.yaml"
+    ],
+    "removed": [
+      "cicd/tasks/build.yaml"
+    ],
+    "modified": [
+      "cicd/pipeline-s2i-build-and-deploy.yaml",
+      "cicd/pipeline.md",
+      "cicd/pipelineRun.yaml"
+    ]
+  },
+  "repository": {
+    "id": 1,
+    "owner": {
+      "id": 1,
+      "login": "jiadchen",
+      "full_name": "",
+      "email": "jiadchen@redhat.com",
+      "avatar_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/avatar/b65b4bde134cd0eae3e610878d8be899",
+      "language": "",
+      "is_admin": false,
+      "last_login": "0001-01-01T00:00:00Z",
+      "created": "2022-11-29T04:26:23Z",
+      "restricted": false,
+      "active": false,
+      "prohibit_login": false,
+      "location": "",
+      "website": "",
+      "description": "",
+      "visibility": "public",
+      "followers_count": 0,
+      "following_count": 0,
+      "starred_repos_count": 0,
+      "username": "jiadchen"
+    },
+    "name": "openshift-pipeline-springboot",
+    "full_name": "jiadchen/openshift-pipeline-springboot",
+    "description": "",
+    "empty": false,
+    "private": false,
+    "fork": false,
+    "template": false,
+    "parent": null,
+    "mirror": false,
+    "size": 1121,
+    "language": "",
+    "languages_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/api/v1/repos/jiadchen/openshift-pipeline-springboot/languages",
+    "html_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot",
+    "ssh_url": "ssh://gitea@gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com:2022/jiadchen/openshift-pipeline-springboot.git",
+    "clone_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot.git",
+    "original_url": "",
+    "website": "",
+    "stars_count": 0,
+    "forks_count": 0,
+    "watchers_count": 1,
+    "open_issues_count": 0,
+    "open_pr_counter": 0,
+    "release_counter": 0,
+    "default_branch": "main",
+    "archived": false,
+    "created_at": "2022-11-29T04:27:38Z",
+    "updated_at": "2022-11-29T04:31:22Z",
+    "permissions": {
+      "admin": true,
+      "push": true,
+      "pull": true
+    },
+    "has_issues": true,
+    "internal_tracker": {
+      "enable_time_tracker": true,
+      "allow_only_contributors_to_track_time": true,
+      "enable_issue_dependencies": true
+    },
+    "has_wiki": true,
+    "has_pull_requests": true,
+    "has_projects": true,
+    "ignore_whitespace_conflicts": false,
+    "allow_merge_commits": true,
+    "allow_rebase": true,
+    "allow_rebase_explicit": true,
+    "allow_squash_merge": true,
+    "default_merge_style": "merge",
+    "avatar_url": "",
+    "internal": false,
+    "mirror_interval": "",
+    "mirror_updated": "0001-01-01T00:00:00Z",
+    "repo_transfer": null
+  },
+  "pusher": {
+    "id": 1,
+    "login": "jiadchen",
+    "full_name": "",
+    "email": "jiadchen@redhat.com",
+    "avatar_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/avatar/b65b4bde134cd0eae3e610878d8be899",
+    "language": "",
+    "is_admin": false,
+    "last_login": "0001-01-01T00:00:00Z",
+    "created": "2022-11-29T04:26:23Z",
+    "restricted": false,
+    "active": false,
+    "prohibit_login": false,
+    "location": "",
+    "website": "",
+    "description": "",
+    "visibility": "public",
+    "followers_count": 0,
+    "following_count": 0,
+    "starred_repos_count": 0,
+    "username": "jiadchen"
+  },
+  "sender": {
+    "id": 1,
+    "login": "jiadchen",
+    "full_name": "",
+    "email": "jiadchen@redhat.com",
+    "avatar_url": "https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/avatar/b65b4bde134cd0eae3e610878d8be899",
+    "language": "",
+    "is_admin": false,
+    "last_login": "0001-01-01T00:00:00Z",
+    "created": "2022-11-29T04:26:23Z",
+    "restricted": false,
+    "active": false,
+    "prohibit_login": false,
+    "location": "",
+    "website": "",
+    "description": "",
+    "visibility": "public",
+    "followers_count": 0,
+    "following_count": 0,
+    "starred_repos_count": 0,
+    "username": "jiadchen"
+  }
+}

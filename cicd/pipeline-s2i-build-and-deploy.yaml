@@ -5,13 +5,13 @@ metadata:
   namespace: sample-application
 spec:
   params:
-    - name: IMAGE_NAME
+    - name: APP_NAME
       type: string
-    - name: GIT_REPO
+    - name: GIT_REPO_URL
       type: string
     - name: GIT_REVISION
       type: string
-      default: ''
+      default: ""
   workspaces:
     - name: workspace
   tasks:
@@ -24,7 +24,7 @@ spec:
           workspace: workspace
       params:
         - name: url
-          value: $(params.GIT_REPO)
+          value: $(params.GIT_REPO_URL)
         - name: revision
           value: $(params.GIT_REVISION)
         - name: subdirectory
@@ -45,7 +45,7 @@ spec:
         - name: PATH_CONTEXT
           value: "./applications/api"
         - name: IMAGE
-          value: $(params.IMAGE_NAME)
+          value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(params.APP_NAME)
         - name: TLSVERIFY
           value: "false"
 
@@ -56,11 +56,12 @@ spec:
       runAfter:
         - build
       params:
-      - name: SCRIPT
-        value: |
-          oc get "deployment/sample-api" > /dev/null 2>&1
-          if [ "$?" == "0" ]; then
-            echo deployment/sample-api already exists.
-          else
-            oc new-app --docker-image $(params.IMAGE_NAME)
-          fi
+        - name: SCRIPT
+          value: |
+            oc get "deployment/$(params.APP_NAME)" > /dev/null 2>&1
+            if [ "$?" == "0" ]; then
+              echo deployment/$(params.APP_NAME) already exists.
+            else
+              oc new-app --docker-image image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(params.APP_NAME)
+              oc expose service/$(params.APP_NAME)
+            fi

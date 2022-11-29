@@ -5,38 +5,37 @@ metadata:
   namespace: sample-application
 spec:
   params:
-  - name: git-repo-url
-    description: The git repository url
-  - name: git-repo-name
-    description: The name of the deployment to be created / patched
-  - name: git-revision
-    description: The git revision
-    default: ''
+    - name: GIT_REPO_URL
+      description: The git repository url
+    - name: GIT_REPO_NAME
+      description: The name of the deployment to be created / patched
+    - name: GIT_REVISION
+      description: The git revision
+      default: ""
 
   resourcetemplates:
-  - apiVersion: tekton.dev/v1beta1
-    kind: PipelineRun
-    metadata:
-      name: sample-pipeline-run-$(uid)
-      namespace: sample-application
-    spec:
-      serviceAccountName: pipeline
-      pipelineRef:
-        name: s2i-build-and-deploy
-      params:
-        - name: IMAGE_NAME
-          value: >-
-            image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/sample-api
-        - name: GIT_REPO
-          value: $(params.git-repo-url)
-        - name: GIT_REVISION
-          value: $(params.git-revision)
-      workspaces:
-        - name: workspace
-          volumeClaimTemplate:
-            spec:
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 1Gi
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        name: sample-pipeline-run-$(uid)
+        namespace: sample-application
+      spec:
+        serviceAccountName: pipeline
+        pipelineRef:
+          name: s2i-build-and-deploy
+        params:
+          - name: APP_NAME
+            value: sample-api
+          - name: GIT_REPO_URL
+            value: $(tt.params.GIT_REPO_URL)
+          - name: GIT_REVISION
+            value: $(tt.params.GIT_REVISION)
+        workspaces:
+          - name: workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
