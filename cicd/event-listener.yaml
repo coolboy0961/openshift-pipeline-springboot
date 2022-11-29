@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: sample-event-listener
+  namespace: sample-application
+spec:
+  serviceAccountName: pipeline
+  triggers:
+  - bindings:
+    - ref: sample-trigger-binding
+    template:
+      ref: sample-trigger-template

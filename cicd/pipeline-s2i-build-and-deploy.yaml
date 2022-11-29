@@ -2,12 +2,16 @@
 kind: Pipeline
 metadata:
   name: s2i-build-and-deploy
+  namespace: sample-application
 spec:
   params:
     - name: IMAGE_NAME
       type: string
     - name: GIT_REPO
       type: string
+    - name: GIT_REVISION
+      type: string
+      default: ''
   workspaces:
     - name: workspace
   tasks:
@@ -22,7 +26,7 @@ spec:
         - name: url
           value: $(params.GIT_REPO)
         - name: revision
-          value: ""
+          value: $(params.GIT_REVISION)
         - name: subdirectory
           value: ""
         - name: deleteExisting

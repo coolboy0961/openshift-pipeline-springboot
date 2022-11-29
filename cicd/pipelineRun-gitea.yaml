@@ -12,7 +12,7 @@ spec:
       value: >-
         image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/sample-api
     - name: GIT_REPO
-      value: 'https://github.com/coolboy0961/openshift-pipeline-springboot.git'
+      value: 'https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot.git'
   workspaces:
     - name: workspace
       volumeClaimTemplate:
