@@ -17,7 +17,8 @@ oc new-project gitea
 apiVersion: gpte.opentlc.com/v1
 kind: Gitea
 metadata:
-  name: simple-gitea
+  name: gitea-instance
+  namespace: gitea
 spec:
   giteaImageTag: latest
   giteaSsl: true
@@ -27,3 +28,7 @@ spec:
 
 GiteaのWeb画面にアクセスします。
 ![](asset/gitea.md_2022-11-14-12-12-22.png)
+
+新しいユーザを作成する。
+
+デフォルト設定で新しいリポジトリを作成する。
