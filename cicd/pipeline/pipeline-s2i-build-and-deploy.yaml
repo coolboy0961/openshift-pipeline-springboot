@@ -48,6 +48,8 @@ spec:
           value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(params.APP_NAME)
         - name: TLSVERIFY
           value: "false"
+        - name: MAVEN_ARGS_APPEND
+          default: ""  # -Dspring-boot.run.profiles=openshift
 
     - name: deploy
       taskRef:
