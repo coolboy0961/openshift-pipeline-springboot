@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: sample-pipeline-run-$(uid)
+  namespace: sample-application
+spec:
+  serviceAccountName: pipeline
+  pipelineRef:
+    name: s2i-build-and-deploy
+  params:
+    - name: APP_NAME
+      value: menu
+    - name: GIT_REPO_URL
+      value: 'https://github.com/coolboy0961/openshift-pipeline-springboot.git'
+    - name: GIT_REVISION
+      value: ''
+  workspaces:
+    - name: workspace
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+

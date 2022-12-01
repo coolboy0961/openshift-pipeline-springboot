@@ -1,0 +1,70 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: menu
+  namespace: sample-application
+  labels:
+    app: menu
+    app.kubernetes.io/component: menu
+    app.kubernetes.io/instance: menu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: menu
+  template:
+    metadata:
+      labels:
+        deployment: menu
+    spec:
+      containers:
+        - name: menu
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/sample-application/menu:latest
+          ports:
+            - containerPort: 8443
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: menu
+  namespace: sample-application
+  labels:
+    app: menu
+    app.kubernetes.io/component: menu
+    app.kubernetes.io/instance: menu
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 8443-tcp
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+  selector:
+    deployment: menu
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: menu
+  namespace: sample-application
+  labels:
+    app: menu
+    app.kubernetes.io/component: menu
+    app.kubernetes.io/instance: menu
+spec:
+  host: >-
+    menu-sample-application.apps.opentlc.com
+  to:
+    kind: Service
+    name: menu
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None

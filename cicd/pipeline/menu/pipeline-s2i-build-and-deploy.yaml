@@ -1,0 +1,72 @@
+﻿apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: s2i-build-and-deploy
+  namespace: sample-application
+spec:
+  params:
+    - name: APP_NAME
+      type: string
+    - name: GIT_REPO_URL
+      type: string
+    - name: GIT_REVISION
+      type: string
+      default: ""
+  workspaces:
+    - name: workspace
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      workspaces:
+        - name: output
+          workspace: workspace
+      params:
+        - name: url
+          value: $(params.GIT_REPO_URL)
+        - name: revision
+          value: $(params.GIT_REVISION)
+        - name: subdirectory
+          value: ""
+        - name: deleteExisting
+          value: "true"
+
+    - name: build
+      taskRef:
+        name: s2i-java
+        kind: ClusterTask
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: workspace
+      params:
+        - name: PATH_CONTEXT
+          value: "./applications/api"
+        - name: IMAGE
+          value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(params.APP_NAME)
+        - name: TLSVERIFY
+          value: "false"
+        - name: MAVEN_ARGS_APPEND
+          default: "-Dspring-boot.run.profiles=openshift"
+
+    - name: deploy
+      taskRef:
+        name: openshift-client
+        kind: ClusterTask
+      runAfter:
+        - build
+      workspaces:
+        - name: source
+          workspace: workspace
+      params:
+        - name: SCRIPT
+          value: |
+            echo start creating menudb...
+            oc apply -f ./infra/db/postgres-menu.yaml
+            echo menudb is created.
+
+            echo start deploying menu app...
+            oc apply -f ./pipeline/menu/deployment.yaml
+            echo menu app is deployed.

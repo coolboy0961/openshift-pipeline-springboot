@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: menudb
+    app.kubernetes.io/component: menudb
+    app.kubernetes.io/instance: menudb
+  name: menudb
+  namespace: sample-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: menudb
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        deployment: menudb
+    spec:
+      containers:
+      - env:
+        - name: POSTGRESQL_DATABASE
+          value: menu
+        - name: POSTGRESQL_PASSWORD
+          value: password
+        - name: POSTGRESQL_USER
+          value: menu
+        image: registry.redhat.io/rhel8/postgresql-13:1
+        name: menudb
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: menudb
+    app.kubernetes.io/component: menudb
+    app.kubernetes.io/instance: menudb
+  name: menudb
+  namespace: sample-application
+spec:
+  ports:
+  - name: 5432-tcp
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    deployment: menudb
