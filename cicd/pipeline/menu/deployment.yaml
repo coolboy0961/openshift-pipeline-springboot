@@ -48,3 +48,21 @@ spec:
       targetPort: 8443
   selector:
     deployment: menu
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: menu
+  namespace: sample-application
+  labels:
+    app: menu
+    app.kubernetes.io/component: menu
+    app.kubernetes.io/instance: menu
+spec:
+  to:
+    kind: Service
+    name: menu
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
