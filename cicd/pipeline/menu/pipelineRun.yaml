@@ -1,12 +1,12 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: sample-pipeline-run-$(uid)
+  name: menu-pipeline-run
   namespace: sample-application
 spec:
   serviceAccountName: pipeline
   pipelineRef:
-    name: s2i-build-and-deploy
+    name: s2i-build-and-deploy-menu
   params:
     - name: APP_NAME
       value: menu

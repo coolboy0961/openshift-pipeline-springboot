@@ -1,7 +1,7 @@
 ﻿apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: s2i-build-and-deploy
+  name: s2i-build-and-deploy-menu
   namespace: sample-application
 spec:
   params:
@@ -43,13 +43,13 @@ spec:
           workspace: workspace
       params:
         - name: PATH_CONTEXT
-          value: "./applications/api"
+          value: "./applications/menu"
         - name: IMAGE
           value: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/$(params.APP_NAME)
         - name: TLSVERIFY
           value: "false"
         - name: MAVEN_ARGS_APPEND
-          default: "-Dspring-boot.run.profiles=openshift"
+          value: "-Dspring-boot.run.profiles=openshift"
 
     - name: deploy
       taskRef:
@@ -58,7 +58,7 @@ spec:
       runAfter:
         - build
       workspaces:
-        - name: source
+        - name: manifest-dir
           workspace: workspace
       params:
         - name: SCRIPT

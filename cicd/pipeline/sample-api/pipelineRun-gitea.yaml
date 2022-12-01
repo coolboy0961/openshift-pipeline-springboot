@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: sample-pipeline-run-$(uid)
+  name: sample-pipeline-run
   namespace: sample-application
 spec:
   serviceAccountName: pipeline
