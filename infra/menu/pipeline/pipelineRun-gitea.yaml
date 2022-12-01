@@ -9,7 +9,7 @@ spec:
     name: s2i-build-and-deploy-menu
   params:
     - name: APP_NAME
-      value: menu
+      value: menu-api
     - name: GIT_REPO_URL
       value: 'https://gitea-instance-gitea.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com/jiadchen/openshift-pipeline-springboot.git'
     - name: GIT_REVISION

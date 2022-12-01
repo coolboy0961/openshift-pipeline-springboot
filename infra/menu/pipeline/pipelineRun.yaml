@@ -9,7 +9,7 @@ spec:
     name: s2i-build-and-deploy-menu
   params:
     - name: APP_NAME
-      value: menu
+      value: menu-api
     - name: GIT_REPO_URL
       value: 'https://github.com/coolboy0961/openshift-pipeline-springboot.git'
     - name: GIT_REVISION

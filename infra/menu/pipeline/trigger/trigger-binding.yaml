@@ -1,0 +1,13 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: menu-trigger-binding
+  namespace: sample-application
+spec:
+  params:
+    - name: GIT_REPO_URL
+      value: $(body.repository.clone_url)
+    - name: GIT_REPO_NAME
+      value: $(body.repository.name)
+    - name: GIT_REVISION
+      value: $(body.head_commit.id)

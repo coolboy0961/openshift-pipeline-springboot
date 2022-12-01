@@ -1,0 +1,32 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: menu-event-listener
+  namespace: sample-application
+spec:
+  serviceAccountName: pipeline
+  triggers:
+  - bindings:
+    - ref: menu-trigger-binding
+    template:
+      ref: menu-trigger-template
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: el-menu-event-listener
+  namespace: sample-application
+  labels:
+    app.kubernetes.io/managed-by: EventListener
+    app.kubernetes.io/part-of: Triggers
+    eventlistener: menu-event-listener
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  to:
+    kind: Service
+    name: el-menu-event-listener
+    weight: 100
+  port:
+    targetPort: http-listener
+  wildcardPolicy: None
