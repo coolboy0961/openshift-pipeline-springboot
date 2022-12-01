@@ -64,7 +64,7 @@ spec:
         - name: SCRIPT
           value: |
             echo start creating menudb...
-            oc apply -f ./infra/db/postgres-menu.yaml
+            oc apply -f ./infra/menu/db/postgres-menu.yaml
 
             echo start deploying menu app...
-            oc apply -f ./cicd/pipeline/menu/deployment.yaml
+            oc apply -f ./infra/menu/deployment/menu-api.yaml
