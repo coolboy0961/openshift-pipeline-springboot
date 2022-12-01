@@ -68,5 +68,5 @@ spec:
             echo menudb is created.
 
             echo start deploying menu app...
-            oc apply -f ./pipeline/menu/deployment.yaml
+            oc apply -f ./cicd/pipeline/menu/deployment.yaml
             echo menu app is deployed.
