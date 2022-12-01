@@ -60,7 +60,7 @@ metadata:
     app.kubernetes.io/instance: menu
 spec:
   host: >-
-    menu-sample-application.apps.opentlc.com
+    menu-sample-application.apps.cluster-s45fh.s45fh.sandbox2386.opentlc.com
   to:
     kind: Service
     name: menu
