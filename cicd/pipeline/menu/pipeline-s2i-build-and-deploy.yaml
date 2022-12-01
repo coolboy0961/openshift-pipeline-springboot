@@ -68,6 +68,3 @@ spec:
 
             echo start deploying menu app...
             oc apply -f ./cicd/pipeline/menu/deployment.yaml
-
-            echo exposing service...
-            oc expose service menu
