@@ -65,8 +65,9 @@ spec:
           value: |
             echo start creating menudb...
             oc apply -f ./infra/db/postgres-menu.yaml
-            echo menudb is created.
 
             echo start deploying menu app...
             oc apply -f ./cicd/pipeline/menu/deployment.yaml
-            echo menu app is deployed.
+
+            echo exposing service...
+            oc expose service menu
